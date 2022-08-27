@@ -1,15 +1,17 @@
 import asyncio
-
 from logging.config import fileConfig
 
 from alembic import context
-
+from typing import TYPE_CHECKING
 from sqlalchemy.future.engine import Connection
 
-from app.adapters.storage.models import *
 from app.adapters.storage.db import engine
 from app.adapters.storage.db.base_model import BaseModel
+from app.adapters.storage.models import *
 from app.settings.db import DatabaseSettings
+
+if TYPE_CHECKING:
+    from sqlalchemy import MetaData
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
