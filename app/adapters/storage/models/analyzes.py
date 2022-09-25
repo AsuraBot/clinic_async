@@ -1,5 +1,4 @@
 import sqlalchemy as sa
-from datetime import date
 from app.adapters.storage.db.base_model import BaseModel
 
 
@@ -20,6 +19,9 @@ class Analysis(BaseModel):
 
     id: int = sa.Column(sa.BigInteger(), primary_key=True, autoincrement=True)
     name: str = sa.Column(sa.String(length=30), nullable=False)
+    preparation: str = sa.Column(sa.Text())
+    period: str = sa.Column(sa.String(length=30), nullable=False)
+    is_acive: bool = sa.Column(sa.Boolean(), default=False)
 
 
 analyzes_types_analyzes_table = sa.Table(
