@@ -1,8 +1,9 @@
 from typing import TYPE_CHECKING
+
 from sqlalchemy import event
 from sqlalchemy.ext.asyncio import create_async_engine
-from app.settings.db import DatabaseSettings
 
+from app.settings.db import DatabaseSettings
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncEngine
