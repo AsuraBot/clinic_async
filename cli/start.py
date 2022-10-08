@@ -1,5 +1,6 @@
 import click
 import uvicorn
+from app.settings.uvicorn import UvicornSettings
 
 
 @click.group()
@@ -10,4 +11,4 @@ def start() -> None:
 @start.command()
 def api() -> None:
     """API сервис."""
-    uvicorn.run("app.api.factory:create_app", factory=True, host="127.0.0.1", port=8000)
+    uvicorn.run(**UvicornSettings().dict())

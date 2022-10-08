@@ -1,4 +1,4 @@
 from pathlib import Path
 
-# Корневая папка приложений.
+# Корневая директория проекта.
 BASE_DIR = Path(__file__).absolute().parent.parent
