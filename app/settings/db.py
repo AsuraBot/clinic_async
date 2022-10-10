@@ -8,8 +8,10 @@ class DatabaseSettings(BaseSettings):
 
     # Тип БД.
     type_: str = "postgresql"
+    # Асинхронный драйвер подключения к БД.
+    async_driver: str = "asyncpg"
     # Драйвер подключения к БД.
-    driver: str = "asyncpg"
+    driver: str = "psycopg2"
     # Пользователь БД.
     user: str
     # Пароль пользователя БД.
@@ -28,7 +30,13 @@ class DatabaseSettings(BaseSettings):
     # Максимальное количество подключений к БД.
     max_overflow: int = 1
     # Время простоя подключения к БД.
-    pool_timeout: timedelta = timedelta(seconds=5)
+    pool_timeout: int = 5
+
+    @property
+    def async_url(self) -> str:
+        """Ссылка для ассинхронного подключения к БД."""
+        schema = f"{self.type_}+{self.async_driver}"
+        return f"{schema}://{self.user}:{self.password}@{self.host}:{self.port}/{self.name}"
 
     @property
     def url(self) -> str:

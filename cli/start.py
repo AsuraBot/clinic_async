@@ -1,5 +1,6 @@
 import click
 import uvicorn
+
 from app.settings.uvicorn import UvicornSettings
 
 

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from app.api.admin.routes import index
 
 PREFIX = "/admin"

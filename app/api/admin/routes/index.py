@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Request
-from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from utils.constants import BASE_DIR
+from fastapi.templating import Jinja2Templates
 
+from utils.constants import BASE_DIR
 
 TAG = "index"
 PREFIX = ""

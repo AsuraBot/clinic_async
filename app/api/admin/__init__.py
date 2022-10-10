@@ -1,1 +1,1 @@
-from app.api.admin.factory import create_app, PREFIX
+from app.api.admin.factory import PREFIX, create_app

@@ -1,8 +1,8 @@
 import asyncio
 from logging.config import fileConfig
+from typing import TYPE_CHECKING
 
 from alembic import context
-from typing import TYPE_CHECKING
 from sqlalchemy.future.engine import Connection
 
 from app.adapters.storage.db import engine
