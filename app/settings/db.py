@@ -7,7 +7,7 @@ class DatabaseSettings(BaseSettings):
     """Настройки подключения к базе данных."""
 
     # Тип БД.
-    type: str = "postgresql"
+    type_: str = "postgresql"
     # Драйвер подключения к БД.
     driver: str = "asyncpg"
     # Пользователь БД.
@@ -33,7 +33,7 @@ class DatabaseSettings(BaseSettings):
     @property
     def url(self) -> str:
         """Ссылка для подключения к БД."""
-        schema = f"{self.type}+{self.driver}"
+        schema = f"{self.type_}+{self.driver}"
         return f"{schema}://{self.user}:{self.password}@{self.host}:{self.port}/{self.name}"
 
     class Config:

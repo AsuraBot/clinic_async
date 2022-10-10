@@ -1,1 +1,1 @@
- docker-compose -f cicd/docker-compose.local.yml up -d 
+docker-compose -f cicd/docker-compose.local.yml up -d
