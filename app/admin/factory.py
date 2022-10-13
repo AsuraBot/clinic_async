@@ -20,6 +20,7 @@ def create_app() -> "Flask":
 
     admin = Admin(
         app,
+        base_template="layouts/base.html",
         name="Административная панель",
         index_view=AdminIndexView(name="Главная", url="/"),
         template_mode="bootstrap4",

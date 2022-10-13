@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
     integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link type="text/css" href="/static/admin/css/index.css" rel="stylesheet">
+  <link type="text/css" href="/static/css/index.css" rel="stylesheet">
 
   <!-- Specific Page CSS goes HERE -->
   {% block stylesheets %}{% endblock stylesheets %}
@@ -52,22 +52,22 @@
   <!-- =================================================== -->
   <div>
 
-    {% include 'admin/includes/sidebar.html' %}
+    {% include 'includes/sidebar.html' %}
 
     <!-- #Main ============================ -->
     <div class="page-container">
 
-      {% include 'admin/includes/navigation.html' %}
+      {% include 'includes/navigation.html' %}
 
       {% block content %}{% endblock content %}
 
-      {% include 'admin/includes/footer.html' %}
+      {% include 'includes/footer.html' %}
 
     </div>
 
   </div>
 
-  {% include 'admin/includes/scripts.html' %}
+  {% include 'includes/scripts.html' %}
 
   <!-- Specific Page JS goes HERE -->
   {% block javascripts %}{% endblock javascripts %}
