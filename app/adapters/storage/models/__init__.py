@@ -1,4 +1,14 @@
 from app.adapters.storage.models.analyzes import (
-    Analysis, AnalysisType, analyzes_types_analyzes_table)
+    Analysis,
+    AnalysisType,
+    analyzes_types_analyzes_table,
+)
 from app.adapters.storage.models.specialists import (
-    Specialist, Specialization, specializations_specialists_table)
+    Specialist,
+    Specialization,
+    specializations_specialists_table,
+)
+from app.adapters.storage.models.users import User
+from app.adapters.storage.models.contacts import Contact
+from app.adapters.storage.models.news import News
+from app.adapters.storage.models.services import Service, ServiceType

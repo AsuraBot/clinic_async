@@ -1,15 +1,18 @@
-from fastapi import FastAPI
+from typing import TYPE_CHECKING
+from app.adapters.storage.db import engine
+from sqladmin import Admin
+from app.api.admin.routers.analyzes import AnalysisAdmin, AnalysisTypeAdmin
 
-from app.api.admin.routes import index
+if TYPE_CHECKING:
+    from fastapi import FastAPI
 
 PREFIX = "/admin"
 
 
-def create_app(title: str, version: str) -> "FastAPI":
-    """Создание подприложения."""
-    app = FastAPI(title=title, version=version, docs_url=None, redoc_url=None)
+def create_app(app: "FastAPI") -> None:
+    """Добавить роутеры админ-панели."""
 
-    # Подключение роутеров.
-    app.include_router(index.router)
+    admin = Admin(app, engine.get_async(), base_url=PREFIX, title="Админ-панель")
 
-    return app
+    admin.add_view(AnalysisTypeAdmin)
+    admin.add_view(AnalysisAdmin)

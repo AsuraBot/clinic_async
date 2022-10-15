@@ -2,7 +2,7 @@ from datetime import date
 
 import sqlalchemy as sa
 
-from app.adapters.storage.db.base_model import BaseModel
+from app.adapters.storage.models.base import BaseModel
 
 
 class Specialization(BaseModel):

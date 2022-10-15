@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from adapters.storage.db.base_model import BaseModel
+from app.adapters.storage.models.base import BaseModel
 
 
 class ServiceType(BaseModel):

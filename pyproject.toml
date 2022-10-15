@@ -15,9 +15,6 @@ sqlalchemy2-stubs = "^0.0.2-alpha.25"
 pydantic = {extras = ["dotenv"], version = "^1.9.2"}
 asyncpg = "^0.26.0"
 sqladmin = "^0.6.0"
-Flask = "^2.2.2"
-Flask-Admin = "^1.6.0"
-psycopg2 = "^2.9.4"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
