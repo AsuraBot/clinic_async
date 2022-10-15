@@ -1,3 +1,5 @@
+{% import 'admin/layout.html' as layout with context -%}
+
 <div class="sidebar">
   <div class="sidebar-inner">
     <!-- ### $Sidebar Header ### -->
@@ -12,7 +14,9 @@
                 </div>
               </div>
               <div class="peer peer-greed">
-                <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                {% block brand %}
+                <h5 class="lh-1 mB-0 logo-text">{{ admin_view.admin.name }}</h5>
+                {% endblock %}
               </div>
             </div>
           </a>
@@ -98,19 +102,16 @@
           <span class="icon-holder">
             <i class="c-orange-500 ti-layout-list-thumb"></i>
           </span>
-          <span class="title">Tables</span>
+          <span class="title">Данные</span>
           <span class="arrow">
             <i class="ti-angle-right"></i>
           </span>
         </a>
+        {% block main_menu %}
         <ul class="dropdown-menu">
-          <li>
-            <a class='sidebar-link' href="/basic-table.html">Basic Table</a>
-          </li>
-          <li>
-            <a class='sidebar-link' href="/datatable.html">Data Table</a>
-          </li>
+          {{ layout.menu() }}
         </ul>
+        {% endblock %}
       </li>
       <li class="nav-item dropdown">
         <a class="dropdown-toggle" href="javascript:void(0);">
