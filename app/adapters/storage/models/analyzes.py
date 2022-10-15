@@ -22,7 +22,7 @@ class Analysis(BaseModel):
     name: str = sa.Column(sa.String(length=30), nullable=False)
     preparation: str = sa.Column(sa.Text())
     period: str = sa.Column(sa.String(length=30), nullable=False)
-    is_acive: bool = sa.Column(sa.Boolean(), default=False)
+    is_active: bool = sa.Column(sa.Boolean(), default=False)
 
 
 analyzes_types_analyzes_table = sa.Table(

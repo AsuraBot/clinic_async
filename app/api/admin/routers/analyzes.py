@@ -9,20 +9,13 @@ class AnalysisAdmin(ModelView, model=Analysis):
     name_plural = "Анализы"
     icon = "fa-solid fa-flask"
 
-    column_list = (
-        Analysis.id,
-        Analysis.name,
-        Analysis.preparation,
-        Analysis.period,
-        Analysis.is_acive,
-    )
-
+    column_list = ("id", "name", "preparation", "period", "is_active")
     column_labels = {
         "id": "ID",
         "name": "Название",
         "preparation": "Хз что это",
         "period": "Время проведения",
-        "is_acive": "Активно",
+        "is_active": "Активно",
     }
 
 
@@ -33,5 +26,5 @@ class AnalysisTypeAdmin(ModelView, model=AnalysisType):
     name_plural = "Типы анализов"
     icon = "fa-solid fa-flask"
 
-    column_list = (AnalysisType.id, AnalysisType.name, AnalysisType.description)
+    column_list = ("id", "name", "description")
     column_labels = {"id": "ID", "name": "Название", "description": "Описание"}
