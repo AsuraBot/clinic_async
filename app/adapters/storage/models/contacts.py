@@ -15,3 +15,4 @@ class Contact(BaseModel):
     work_time: str = sa.Column(sa.String(length=100), nullable=False)
     phone: str = sa.Column(sa.String(length=20), nullable=False)
     email: str = sa.Column(sa.String(length=30), nullable=False)
+    map_code: str = sa.Column(sa.String(length=500), nullable=True)

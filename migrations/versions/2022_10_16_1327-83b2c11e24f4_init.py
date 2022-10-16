@@ -1,15 +1,16 @@
 """init
 
-Revision ID: 3a559c94a0f6
+Revision ID: 83b2c11e24f4
 Revises: 
-Create Date: 2022-10-15 18:19:03.990950
+Create Date: 2022-10-16 13:27:47.705720
 
 """
-import sqlalchemy as sa
 from alembic import op
+import sqlalchemy as sa
+
 
 # revision identifiers, used by Alembic.
-revision = "3a559c94a0f6"
+revision = "83b2c11e24f4"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -42,6 +43,7 @@ def upgrade() -> None:
         sa.Column("work_time", sa.String(length=100), nullable=False),
         sa.Column("phone", sa.String(length=20), nullable=False),
         sa.Column("email", sa.String(length=30), nullable=False),
+        sa.Column("map_code", sa.String(length=500), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -52,6 +54,7 @@ def upgrade() -> None:
         sa.Column("date", sa.Date(), nullable=False),
         sa.Column("description", sa.String(length=500), nullable=False),
         sa.Column("photo", sa.String(length=50), nullable=False),
+        sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -82,7 +85,9 @@ def upgrade() -> None:
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("username", sa.String(length=64), nullable=True),
         sa.Column("email", sa.String(length=64), nullable=True),
-        sa.Column("password", sa.LargeBinary(), nullable=True),
+        sa.Column("password", sa.String(length=32), nullable=False),
+        sa.Column("created", sa.Date(), nullable=False),
+        sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("email"),
         sa.UniqueConstraint("username"),

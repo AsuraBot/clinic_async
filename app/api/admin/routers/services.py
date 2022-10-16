@@ -1,5 +1,5 @@
 from sqladmin import ModelView
-from wtforms.fields import BooleanField, FileField
+from wtforms.fields import BooleanField
 
 from app.adapters.storage.models.services import ServiceType, Service
 

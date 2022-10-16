@@ -16,3 +16,4 @@ class News(BaseModel):
     date: date = sa.Column(sa.Date(), nullable=False, default=date.today)
     description: str = sa.Column(sa.String(length=500), nullable=False)
     photo: str = sa.Column(sa.String(length=50), nullable=False)
+    is_active: bool = sa.Column(sa.Boolean(), default=False)
