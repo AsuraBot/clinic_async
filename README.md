@@ -6,7 +6,7 @@
     ```
     docker-compose -f cicd/docker-compose.local.yml up -d
     ```
-1. Создать мирацию базы данных
+1. Создать миграцию базы данных
     ```
     python manage.py migrations make "Migration message."
     ```

@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+
 from app.api import admin
-
 from utils.constants import BASE_DIR
-
 
 STATIC_PREFIX = "/static"
 

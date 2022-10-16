@@ -1,6 +1,7 @@
-from app.adapters.storage.models.analyzes import Analysis, AnalysisType
 from sqladmin import ModelView
 from wtforms.fields import BooleanField
+
+from app.adapters.storage.models.analyzes import Analysis, AnalysisType
 
 
 class AnalysisTypeAdmin(ModelView, model=AnalysisType):
@@ -10,7 +11,7 @@ class AnalysisTypeAdmin(ModelView, model=AnalysisType):
     name_plural = "Типы анализов"
     icon = "fa-solid fa-vials"
 
-    column_list = ("id", "name", "description")
+    column_list = ("id", "name")
     column_labels = {
         "id": "ID",
         "name": "Название",
@@ -20,7 +21,7 @@ class AnalysisTypeAdmin(ModelView, model=AnalysisType):
 
     form_ajax_refs = {
         "analyzes": {
-            "fields": ("id", "name", "preparation"),
+            "fields": ("name",),
             "order_by": "name",
         }
     }
@@ -40,7 +41,7 @@ class AnalysisAdmin(ModelView, model=Analysis):
     column_labels = {
         "id": "ID",
         "name": "Название",
-        "preparation": "Хз что это",
+        "preparation": "Подготовка",
         "period": "Время проведения",
         "is_active": "Активно",
         "analyzes_types": "Типы анализов",
@@ -48,7 +49,7 @@ class AnalysisAdmin(ModelView, model=Analysis):
 
     form_ajax_refs = {
         "analyzes_types": {
-            "fields": ("id", "name"),
+            "fields": ("name",),
             "order_by": "name",
         }
     }
