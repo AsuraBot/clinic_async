@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 import sqlalchemy as sa
 
@@ -13,7 +13,7 @@ class News(BaseModel):
     id: int = sa.Column(sa.BigInteger(), primary_key=True, autoincrement=True)
     title: str = sa.Column(sa.String(length=50), nullable=False)
     preview: str = sa.Column(sa.String(length=50), nullable=False)
-    date: date = sa.Column(sa.Date(), nullable=False, default=date.today)
+    created: datetime = sa.Column(sa.DateTime(), nullable=False, default=datetime.now)
     description: str = sa.Column(sa.String(length=500), nullable=False)
     photo: str = sa.Column(sa.String(length=50), nullable=False)
     is_active: bool = sa.Column(sa.Boolean(), default=False)

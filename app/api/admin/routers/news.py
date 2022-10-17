@@ -14,13 +14,13 @@ class NewsAdmin(ModelView, model=News):
     form_overrides = {"is_active": BooleanField}
     form_widget_args = {"is_active": {"class": "form-check-input"}}
 
-    column_list = ("id", "title", "date")
+    column_list = ("id", "title", "created")
     column_labels = {
         "id": "ID",
         "title": "Заголовок",
         "preview": "Предпросмотр",
         "description": "Описание",
-        "date": "Дата создания",
+        "created": "Дата создания",
         "photo": "Фото",
         "is_active": "Актуально",
     }

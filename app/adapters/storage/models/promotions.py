@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import sqlalchemy as sa
 
 from app.adapters.storage.models.base import BaseModel
@@ -14,7 +16,8 @@ class Promotion(BaseModel):
     description: str = sa.Column(sa.String(length=100), nullable=False)
     photo: str = sa.Column(sa.String(length=150), nullable=True)
     services: str = sa.Column(sa.String(length=100), nullable=False)
-    promotion_date: str = sa.Column(sa.String(length=100), nullable=False)
+    date_start: datetime = sa.Column(sa.DateTime(), nullable=False)
+    date_end: datetime = sa.Column(sa.DateTime(), nullable=False)
     url: str = sa.Column(sa.String(length=100), nullable=False)
     is_active: bool = sa.Column(sa.Boolean(), default=False)
     on_main: bool = sa.Column(sa.Boolean(), default=False)

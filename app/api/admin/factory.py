@@ -9,9 +9,9 @@ from app.api.admin.routers.news import NewsAdmin
 from app.api.admin.routers.pages import PagesAdmin
 from app.api.admin.routers.promotions import PromotionsAdmin
 from app.api.admin.routers.services import ServiceAdmin, ServiceTypeAdmin
-from app.api.admin.routers.specialists import (SpecialistAdmin,
-                                               SpecializationAdmin)
+from app.api.admin.routers.specialists import SpecialistAdmin, SpecializationAdmin
 from app.api.admin.routers.users import UsersAdmin
+from app.api.admin.routers.callbacks import CallbacksAdmin
 
 if TYPE_CHECKING:
     from fastapi import FastAPI
@@ -35,3 +35,4 @@ def create_app(app: "FastAPI") -> None:
     admin.add_view(UsersAdmin)
     admin.add_view(PromotionsAdmin)
     admin.add_view(PagesAdmin)
+    admin.add_view(CallbacksAdmin)

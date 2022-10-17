@@ -1,15 +1,16 @@
 """init
 
-Revision ID: f756cc4b275e
+Revision ID: 74b3c392d767
 Revises: 
-Create Date: 2022-10-17 10:42:47.842382
+Create Date: 2022-10-17 12:56:25.743822
 
 """
-import sqlalchemy as sa
 from alembic import op
+import sqlalchemy as sa
+
 
 # revision identifiers, used by Alembic.
-revision = "f756cc4b275e"
+revision = "74b3c392d767"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,6 +35,17 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
+        "callbacks",
+        sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
+        sa.Column("name", sa.String(length=100), nullable=False),
+        sa.Column("phone", sa.String(length=20), nullable=False),
+        sa.Column("description", sa.Text(), nullable=True),
+        sa.Column("created", sa.DateTime(), nullable=False),
+        sa.Column("answered", sa.Boolean(), nullable=True),
+        sa.Column("call_back_time", sa.DateTime(), nullable=True),
+        sa.PrimaryKeyConstraint("id"),
+    )
+    op.create_table(
         "contacts",
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
         sa.Column("city", sa.String(length=30), nullable=False),
@@ -50,9 +62,18 @@ def upgrade() -> None:
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
         sa.Column("title", sa.String(length=50), nullable=False),
         sa.Column("preview", sa.String(length=50), nullable=False),
-        sa.Column("date", sa.Date(), nullable=False),
+        sa.Column("created", sa.DateTime(), nullable=False),
         sa.Column("description", sa.String(length=500), nullable=False),
         sa.Column("photo", sa.String(length=50), nullable=False),
+        sa.Column("is_active", sa.Boolean(), nullable=True),
+        sa.PrimaryKeyConstraint("id"),
+    )
+    op.create_table(
+        "pages",
+        sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
+        sa.Column("url", sa.String(length=100), nullable=False),
+        sa.Column("title", sa.String(length=20), nullable=False),
+        sa.Column("body", sa.Text(), nullable=False),
         sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
@@ -64,7 +85,9 @@ def upgrade() -> None:
         sa.Column("description", sa.String(length=100), nullable=False),
         sa.Column("photo", sa.String(length=150), nullable=True),
         sa.Column("services", sa.String(length=100), nullable=False),
-        sa.Column("promotion_date", sa.String(length=100), nullable=False),
+        sa.Column("date_start", sa.DateTime(), nullable=False),
+        sa.Column("date_end", sa.DateTime(), nullable=False),
+        sa.Column("url", sa.String(length=100), nullable=False),
         sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.Column("on_main", sa.Boolean(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
@@ -159,8 +182,10 @@ def downgrade() -> None:
     op.drop_table("specialists")
     op.drop_table("services_types")
     op.drop_table("promotions")
+    op.drop_table("pages")
     op.drop_table("news")
     op.drop_table("contacts")
+    op.drop_table("callbacks")
     op.drop_table("analyzes_types")
     op.drop_table("analyzes")
     # ### end Alembic commands ###
