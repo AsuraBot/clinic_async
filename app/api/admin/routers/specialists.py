@@ -33,16 +33,24 @@ class SpecialistAdmin(ModelView, model=Specialist):
     name_plural = "Специалисты"
     icon = "fa-solid fa-user-doctor"
 
-    form_overrides = {"on_main": BooleanField, "photo": FileField}
-    form_widget_args = {"on_main": {"class": "form-check-input"}}
+    form_overrides = {
+        "on_main": BooleanField,
+        "photo": FileField,
+        "is_active": BooleanField,
+    }
+    form_widget_args = {
+        "on_main": {"class": "form-check-input"},
+        "is_active": {"class": "form-check-input"},
+    }
 
-    column_list = ("id", "name", "on_main")
+    column_list = ("id", "name", "on_main", "is_active")
     column_labels = {
         "id": "ID",
         "name": "Ф.И.О.",
         "description": "Описание",
         "photo": "Фото",
         "on_main": "Вывод на главной",
+        "is_active": "Актуален",
         "start_work_date": "Начало работы",
         "specializations": "Специальности",
     }

@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 83b2c11e24f4
+Revision ID: f756cc4b275e
 Revises: 
-Create Date: 2022-10-16 13:27:47.705720
+Create Date: 2022-10-17 10:42:47.842382
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "83b2c11e24f4"
+revision = "f756cc4b275e"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -58,6 +58,19 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
+        "promotions",
+        sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
+        sa.Column("sale", sa.String(length=30), nullable=False),
+        sa.Column("title", sa.String(length=20), nullable=False),
+        sa.Column("description", sa.String(length=100), nullable=False),
+        sa.Column("photo", sa.String(length=150), nullable=True),
+        sa.Column("services", sa.String(length=100), nullable=False),
+        sa.Column("promotion_date", sa.String(length=100), nullable=False),
+        sa.Column("is_active", sa.Boolean(), nullable=True),
+        sa.Column("on_main", sa.Boolean(), nullable=True),
+        sa.PrimaryKeyConstraint("id"),
+    )
+    op.create_table(
         "services_types",
         sa.Column("id", sa.BigInteger(), autoincrement=True, nullable=False),
         sa.Column("name", sa.String(length=30), nullable=False),
@@ -72,6 +85,7 @@ def upgrade() -> None:
         sa.Column("start_work_date", sa.Date(), nullable=False),
         sa.Column("description", sa.Text(), nullable=True),
         sa.Column("on_main", sa.Boolean(), nullable=True),
+        sa.Column("is_active", sa.Boolean(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_table(
@@ -145,6 +159,7 @@ def downgrade() -> None:
     op.drop_table("specializations")
     op.drop_table("specialists")
     op.drop_table("services_types")
+    op.drop_table("promotions")
     op.drop_table("news")
     op.drop_table("contacts")
     op.drop_table("analyzes_types")

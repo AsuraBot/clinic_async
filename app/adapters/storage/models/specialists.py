@@ -44,6 +44,7 @@ class Specialist(BaseModel):
     start_work_date: date = sa.Column(sa.Date(), nullable=False)
     description: str = sa.Column(sa.Text())
     on_main: bool = sa.Column(sa.Boolean(), default=False)
+    is_active: bool = sa.Column(sa.Boolean(), default=False)
 
     specializations: "Specialization" = relationship(
         "Specialization",
