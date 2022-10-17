@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
@@ -40,7 +41,7 @@ class Specialist(BaseModel):
 
     id: int = sa.Column(sa.BigInteger(), primary_key=True, autoincrement=True)
     name: str = sa.Column(sa.String(length=50), nullable=False)
-    photo: str = sa.Column(sa.String(length=150), nullable=True)
+    photo: Optional[str] = sa.Column(sa.String(length=150), nullable=True)
     start_work_date: date = sa.Column(sa.Date(), nullable=False)
     description: str = sa.Column(sa.Text())
     on_main: bool = sa.Column(sa.Boolean(), default=False)
