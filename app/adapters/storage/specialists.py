@@ -1,6 +1,7 @@
-from typing import TYPE_CHECKING
 from collections.abc import Callable
 from contextlib import AbstractAsyncContextManager
+from typing import TYPE_CHECKING
+
 from sqlalchemy import select
 
 from app.adapters.storage.models import Specialist
