@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship
 
-from app.adapters.storage.models.base import BaseModel
+from app.adapters.storage.db.base_model import BaseModel
 
 analyzes_types_analyzes_table = sa.Table(
     "analyzes_types_analyzes",
