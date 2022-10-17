@@ -1,7 +1,7 @@
 from sqladmin import ModelView
 from wtforms.fields import BooleanField
 
-from app.adapters.storage.models.services import ServiceType, Service
+from app.adapters.storage.models.services import Service, ServiceType
 
 
 class ServiceTypeAdmin(ModelView, model=ServiceType):

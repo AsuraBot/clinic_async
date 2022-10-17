@@ -15,5 +15,6 @@ class Promotion(BaseModel):
     photo: str = sa.Column(sa.String(length=150), nullable=True)
     services: str = sa.Column(sa.String(length=100), nullable=False)
     promotion_date: str = sa.Column(sa.String(length=100), nullable=False)
+    url: str = sa.Column(sa.String(length=100), nullable=False)
     is_active: bool = sa.Column(sa.Boolean(), default=False)
     on_main: bool = sa.Column(sa.Boolean(), default=False)

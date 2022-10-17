@@ -1,6 +1,6 @@
-import sqlalchemy as sa
-
 from datetime import date
+
+import sqlalchemy as sa
 
 from app.adapters.storage.models.base import BaseModel
 

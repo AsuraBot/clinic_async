@@ -26,6 +26,7 @@ class PromotionsAdmin(ModelView, model=Promotion):
         "promotion_date": "Дата создания",
         "services": "Акционные услуги",
         "photo": "Фото",
+        "url": "Ссылка на акцию",
         "is_active": "Актуально",
         "on_main": "Выводить на главной",
     }
