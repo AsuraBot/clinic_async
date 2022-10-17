@@ -4,14 +4,15 @@ from sqladmin import Admin
 
 from app.adapters.storage.db import engine
 from app.api.admin.routers.analyzes import AnalysisAdmin, AnalysisTypeAdmin
+from app.api.admin.routers.callbacks import CallbacksAdmin
 from app.api.admin.routers.contacts import ContactAdmin
 from app.api.admin.routers.news import NewsAdmin
 from app.api.admin.routers.pages import PagesAdmin
 from app.api.admin.routers.promotions import PromotionsAdmin
 from app.api.admin.routers.services import ServiceAdmin, ServiceTypeAdmin
-from app.api.admin.routers.specialists import SpecialistAdmin, SpecializationAdmin
+from app.api.admin.routers.specialists import (SpecialistAdmin,
+                                               SpecializationAdmin)
 from app.api.admin.routers.users import UsersAdmin
-from app.api.admin.routers.callbacks import CallbacksAdmin
 
 if TYPE_CHECKING:
     from fastapi import FastAPI

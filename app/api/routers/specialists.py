@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Request
-from app.container import CONTAINER
-from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
+from app.container import CONTAINER
 from utils.constants import BASE_DIR
 
 TAG = "specialists"
