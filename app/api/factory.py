@@ -2,7 +2,16 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.api import admin
-from app.api import root
+from app.api.routers import (
+    specialists,
+    analyzes,
+    contacts,
+    news,
+    pages,
+    promotions,
+    services,
+)
+
 from utils.constants import BASE_DIR
 
 STATIC_PREFIX = "/static"
@@ -19,7 +28,12 @@ def create_app() -> "FastAPI":
     static_files = StaticFiles(directory=BASE_DIR / "app" / "static")
     app.mount(STATIC_PREFIX, static_files, name="static")
 
-    root_api = root.create_app()
-    app.mount(root.PREFIX, root_api)
+    app.include_router(specialists.router)
+    app.include_router(analyzes.router)
+    app.include_router(contacts.router)
+    app.include_router(news.router)
+    app.include_router(pages.router)
+    app.include_router(promotions.router)
+    app.include_router(services.router)
 
     return app
