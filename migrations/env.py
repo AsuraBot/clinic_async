@@ -6,6 +6,7 @@ from alembic import context
 from sqlalchemy.future.engine import Connection
 
 from app.adapters.storage.db import engine
+from app.adapters.storage.models import *
 from app.adapters.storage.db.base_model import BaseModel
 from app.settings.db import DatabaseSettings
 

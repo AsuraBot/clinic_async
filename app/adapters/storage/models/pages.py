@@ -9,7 +9,7 @@ class Page(BaseModel):
     __tablename__ = "pages"
 
     id: int = sa.Column(sa.BigInteger(), primary_key=True, autoincrement=True)
-    url: str = sa.Column(sa.String(length=100), nullable=False)
+    slug: str = sa.Column(sa.String(length=100), nullable=False, unique=True)
     title: str = sa.Column(sa.String(length=20), nullable=False)
     body: str = sa.Column(sa.Text(), nullable=False)
     is_active: bool = sa.Column(sa.Boolean(), default=False)

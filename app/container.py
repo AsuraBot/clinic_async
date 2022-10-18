@@ -10,6 +10,7 @@ from app.adapters.storage.analyzes import AnalyzesAdapter
 from app.adapters.storage.services import ServicesAdapter
 from app.adapters.storage.contacts import ContactsAdapter
 from app.adapters.storage.news import NewsAdapter
+from app.adapters.storage.pages import PagesAdapter
 from app.settings.db import DatabaseSettings
 
 if TYPE_CHECKING:
@@ -40,6 +41,9 @@ class Container(DeclarativeContainer):
     )
     news_adapter: Singleton["ContactsAdapter"] = Singleton(
         NewsAdapter, session_factory=session_ctx.provider
+    )
+    pages_adapter: Singleton["ContactsAdapter"] = Singleton(
+        PagesAdapter, session_factory=session_ctx.provider
     )
 
 

@@ -14,10 +14,10 @@ class PagesAdmin(ModelView, model=Page):
     form_overrides = {"is_active": BooleanField}
     form_widget_args = {"is_active": {"class": "form-check-input"}}
 
-    column_list = ("id", "title", "url", "is_active")
+    column_list = ("id", "title", "slug", "is_active")
     column_labels = {
         "id": "ID",
-        "url": "Ссылка",
+        "slug": "Slug",
         "title": "Заголовок",
         "body": "Тело",
         "is_active": "Актуально",
