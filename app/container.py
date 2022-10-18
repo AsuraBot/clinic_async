@@ -6,6 +6,8 @@ from dependency_injector.providers import Callable, Singleton
 
 from app.adapters.storage.db import engine, session
 from app.adapters.storage.specialists import SpecialistsAdapter
+from app.adapters.storage.analyzes import AnalyzesAdapter
+from app.adapters.storage.services import ServicesAdapter
 from app.settings.db import DatabaseSettings
 
 if TYPE_CHECKING:
@@ -24,6 +26,12 @@ class Container(DeclarativeContainer):
 
     specialists_adapter: Singleton["SpecialistsAdapter"] = Singleton(
         SpecialistsAdapter, session_factory=session_ctx.provider
+    )
+    analyzes_adapter: Singleton["AnalyzesAdapter"] = Singleton(
+        AnalyzesAdapter, session_factory=session_ctx.provider
+    )
+    services_adapter: Singleton["ServicesAdapter"] = Singleton(
+        ServicesAdapter, session_factory=session_ctx.provider
     )
 
 

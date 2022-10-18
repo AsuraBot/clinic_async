@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from app.container import CONTAINER
-from utils.constants import BASE_DIR
+from utils.constants import TEMPLATES_DIR
 
 TAG = "specialists"
 PREFFIX = f"/{TAG}"
@@ -11,7 +11,7 @@ PREFFIX = f"/{TAG}"
 
 router = APIRouter(prefix=PREFFIX, tags=[TAG])
 
-templates = Jinja2Templates(directory=BASE_DIR / "app" / "templates")
+templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 
 @router.get("", response_class=HTMLResponse)
@@ -32,5 +32,5 @@ async def get_specialist(request: Request, id: int) -> "HTMLResponse":
     specialist = await adapter.get(id=id)
 
     return templates.TemplateResponse(
-        "specialists.html", {"request": request, "specialist": specialist}
+        "specialist.html", {"request": request, "specialist": specialist}
     )
