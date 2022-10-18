@@ -5,25 +5,25 @@ from typing import TYPE_CHECKING
 from sqlalchemy import select
 from sqlalchemy.exc import NoResultFound
 
-from app.adapters.storage.models import Specialist
-from app.services.schemas.specialists import SpecialistSchema
+from app.adapters.storage.models import Service
+from app.services.schemas.services import ServiceSchema
 from app.services.exceptions import NotFoundError
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class SpecialistsAdapter:
-    """Адаптер для доступа к данным специалистов."""
+class ServicesAdapter:
+    """Адаптер для доступа к данным услуг."""
 
     def __init__(
         self, session_factory: Callable[[], AbstractAsyncContextManager["AsyncSession"]]
     ) -> None:
         self._session_factory = session_factory
-        self._model = Specialist
+        self._model = Service
 
-    async def get_all(self, on_main: bool) -> list["SpecialistSchema"]:
-        """Получить всех активных специалистов."""
+    async def get_all(self, on_main: bool) -> list["ServiceSchema"]:
+        """Получить все активные услуги."""
 
         query = select(self._model).where(self._model.is_active.is_(True))
 
@@ -32,12 +32,12 @@ class SpecialistsAdapter:
 
         async with self._session_factory() as session:
             rows = await session.execute(query)
-            specialists = [SpecialistSchema.from_orm(row) for row in rows.scalars()]
+            services = [ServiceSchema.from_orm(row) for row in rows.scalars()]
 
-        return specialists
+        return services
 
-    async def get(self, id: int) -> "SpecialistSchema":
-        """Получить специалиста."""
+    async def get(self, id: int) -> "ServiceSchema":
+        """Получить услугу."""
 
         query = select(self._model).where(
             self._model.id == id, self._model.is_active.is_(True)
@@ -47,8 +47,8 @@ class SpecialistsAdapter:
             row = await session.execute(query)
 
             try:
-                specialist = SpecialistSchema.from_orm(row.one()[0])
+                service = ServiceSchema.from_orm(row.one()[0])
             except NoResultFound:
-                raise NotFoundError(f"Специалист с {id=} не найден.")
+                raise NotFoundError(f"Услуга с {id=} не найден.")
 
-        return specialist
+        return service

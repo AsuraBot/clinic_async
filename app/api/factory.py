@@ -1,9 +1,17 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from app.api import handlers
 
 from app.api import admin
-from app.api.routers import (analyzes, contacts, news, pages, promotions,
-                             services, specialists)
+from app.api.routers import (
+    analyzes,
+    contacts,
+    news,
+    pages,
+    promotions,
+    services,
+    specialists,
+)
 from utils.constants import BASE_DIR
 
 STATIC_PREFIX = "/static"
@@ -12,6 +20,9 @@ STATIC_PREFIX = "/static"
 def create_app() -> "FastAPI":
     """Создать приложение FastAPI."""
     app = FastAPI(docs_url=None, redoc_url=None)
+
+    # Добавление обработчиков ошибок.
+    handlers.add_all(app)
 
     # Подключение админ-панели.
     admin.create_app(app)

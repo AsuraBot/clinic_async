@@ -5,39 +5,36 @@ from typing import TYPE_CHECKING
 from sqlalchemy import select
 from sqlalchemy.exc import NoResultFound
 
-from app.adapters.storage.models import Specialist
-from app.services.schemas.specialists import SpecialistSchema
+from app.adapters.storage.models import News
+from app.services.schemas.news import NewsSchema
 from app.services.exceptions import NotFoundError
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class SpecialistsAdapter:
-    """Адаптер для доступа к данным специалистов."""
+class NewsAdapter:
+    """Адаптер для доступа к данным новостей."""
 
     def __init__(
         self, session_factory: Callable[[], AbstractAsyncContextManager["AsyncSession"]]
     ) -> None:
         self._session_factory = session_factory
-        self._model = Specialist
+        self._model = News
 
-    async def get_all(self, on_main: bool) -> list["SpecialistSchema"]:
-        """Получить всех активных специалистов."""
+    async def get_all(self) -> list["NewsSchema"]:
+        """Получить все активные новости."""
 
         query = select(self._model).where(self._model.is_active.is_(True))
 
-        if on_main:
-            query = query.where(self._model.on_main.is_(True))
-
         async with self._session_factory() as session:
             rows = await session.execute(query)
-            specialists = [SpecialistSchema.from_orm(row) for row in rows.scalars()]
+            news = [NewsSchema.from_orm(row) for row in rows.scalars()]
 
-        return specialists
+        return news
 
-    async def get(self, id: int) -> "SpecialistSchema":
-        """Получить специалиста."""
+    async def get(self, id: int) -> "NewsSchema":
+        """Получить новость."""
 
         query = select(self._model).where(
             self._model.id == id, self._model.is_active.is_(True)
@@ -47,8 +44,8 @@ class SpecialistsAdapter:
             row = await session.execute(query)
 
             try:
-                specialist = SpecialistSchema.from_orm(row.one()[0])
+                news = NewsSchema.from_orm(row.one()[0])
             except NoResultFound:
-                raise NotFoundError(f"Специалист с {id=} не найден.")
+                raise NotFoundError(f"Новость с {id=} не найдена.")
 
-        return specialist
+        return news
