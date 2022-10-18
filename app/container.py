@@ -9,6 +9,7 @@ from app.adapters.storage.specialists import SpecialistsAdapter
 from app.adapters.storage.analyzes import AnalyzesAdapter
 from app.adapters.storage.services import ServicesAdapter
 from app.adapters.storage.contacts import ContactsAdapter
+from app.adapters.storage.news import NewsAdapter
 from app.settings.db import DatabaseSettings
 
 if TYPE_CHECKING:
@@ -36,6 +37,9 @@ class Container(DeclarativeContainer):
     )
     contacts_adapter: Singleton["ContactsAdapter"] = Singleton(
         ContactsAdapter, session_factory=session_ctx.provider
+    )
+    news_adapter: Singleton["ContactsAdapter"] = Singleton(
+        NewsAdapter, session_factory=session_ctx.provider
     )
 
 
