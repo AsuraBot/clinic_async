@@ -5,13 +5,12 @@ from sqladmin import Admin
 from app.adapters.storage.db import engine
 from app.api.admin.routers.analyzes import AnalysisAdmin, AnalysisTypeAdmin
 from app.api.admin.routers.callbacks import CallbacksAdmin
-from app.api.admin.routers.contacts import ContactAdmin
+from app.api.admin.routers.offices import OfficeAdmin, CityAdmin
 from app.api.admin.routers.news import NewsAdmin
 from app.api.admin.routers.pages import PagesAdmin
 from app.api.admin.routers.promotions import PromotionsAdmin
 from app.api.admin.routers.services import ServiceAdmin, ServiceTypeAdmin
-from app.api.admin.routers.specialists import (SpecialistAdmin,
-                                               SpecializationAdmin)
+from app.api.admin.routers.specialists import SpecialistAdmin, SpecializationAdmin
 from app.api.admin.routers.users import UsersAdmin
 
 if TYPE_CHECKING:
@@ -31,7 +30,8 @@ def create_app(app: "FastAPI") -> None:
     admin.add_view(SpecialistAdmin)
     admin.add_view(ServiceTypeAdmin)
     admin.add_view(ServiceAdmin)
-    admin.add_view(ContactAdmin)
+    admin.add_view(OfficeAdmin)
+    admin.add_view(CityAdmin)
     admin.add_view(NewsAdmin)
     admin.add_view(UsersAdmin)
     admin.add_view(PromotionsAdmin)

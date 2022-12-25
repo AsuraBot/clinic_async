@@ -5,12 +5,13 @@ from app.api import handlers
 from app.api import admin
 from app.api.routers import (
     analyzes,
-    contacts,
     news,
+    offices,
     pages,
     promotions,
     services,
     specialists,
+    index,
 )
 from utils.constants import BASE_DIR
 
@@ -31,9 +32,10 @@ def create_app() -> "FastAPI":
     static_files = StaticFiles(directory=BASE_DIR / "app" / "static")
     app.mount(STATIC_PREFIX, static_files, name="static")
 
+    app.include_router(index.router)
     app.include_router(specialists.router)
     app.include_router(analyzes.router)
-    app.include_router(contacts.router)
+    app.include_router(offices.router)
     app.include_router(news.router)
     app.include_router(pages.router)
     app.include_router(promotions.router)
