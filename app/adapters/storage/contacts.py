@@ -3,9 +3,10 @@ from contextlib import AbstractAsyncContextManager
 from typing import TYPE_CHECKING
 
 from sqlalchemy import select
+from sqlalchemy.orm import joinedload
 
-from app.adapters.storage.models import Contact
-from app.services.schemas.contacts import ContactSchema
+from app.adapters.storage.models import City
+from app.services.schemas.offices import CitySchema
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,15 +19,15 @@ class ContactsAdapter:
         self, session_factory: Callable[[], AbstractAsyncContextManager["AsyncSession"]]
     ) -> None:
         self._session_factory = session_factory
-        self._model = Contact
+        self._city = City
 
-    async def get_all(self) -> list["ContactSchema"]:
-        """Получить все контакты."""
+    async def get_cities(self) -> list["CitySchema"]:
+        """Получить все города."""
 
-        query = select(self._model)
+        query = select(self._city).options(joinedload(self._city.offices))
 
         async with self._session_factory() as session:
             rows = await session.execute(query)
-            contacts = [ContactSchema.from_orm(row) for row in rows.scalars()]
+            cities = [CitySchema.from_orm(row) for row in rows.unique().scalars()]
 
-        return contacts
+        return cities
